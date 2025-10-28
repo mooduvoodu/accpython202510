@@ -1,1 +1,1 @@
-print('my name')
+print('my name');
