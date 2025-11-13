@@ -1,20 +1,16 @@
+import pdfplumber
+import mystuff
 import math
-import numpy
 
-var1 = 4
-var2 = 'kyle'
-var3 = [1,2,4,5]
-var4 = ('a','bd')
+var1 = 5
 
-print(var1)
-var3.append(99)
+var2 = mystuff.myCat();
 
-var3[2:4]
+math.acos()
 
-def funky(param1,param2 = '4'):
-    pass
 
-numpy.ndarray()
+
+
 
 
 
