@@ -30,18 +30,24 @@
 # Try to solve these on your own before looking at the solutions below.
 # Scroll down for the solutions when you're ready...
 
+def is_even_cekp(x):
+    return x % 2 == 0
 
+def greet_user_cekp(name, greeting = "hello"):
+    print(f"{greeting}, {name}!")
 
+def multiply_all_cekp(*numbers):
+    output = 1
+    for i in numbers:
+        output = output * i
+    return output
 
+def print_dict_cekp(**kwargs):
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
 
-
-
-
-
-
-
-
-
+numlist = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+evens = list(filter(lambda x: x % 2 == 0, numlist))
 
 
 # ==================================================
