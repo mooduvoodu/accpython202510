@@ -1,0 +1,826 @@
+# =============================================
+# This collection of exercises will help you practice a range of Python topics,
+# from basic syntax to advanced concepts like decorators and testing. Each exercise
+# is described with tasks to perform. Try to solve each exercise before looking at 
+# the solution section at the end of this code block.
+
+# Exercise 1: Python Syntax Basics
+# --------------------------------
+# Python uses indentation to define code blocks instead of braces or keywords.
+# Proper syntax (like using colons and consistent indentation) is crucial.
+# 
+# **Task:** The following code snippet has multiple syntax errors (missing colons 
+# and incorrect indentation). Identify and fix the errors so that the code runs 
+# without syntax errors and prints the expected output.
+#
+# (Do not run this code as-is; first, fix the syntax.)
+#
+# HINT: Every `if`, `for`, and function definition line needs a colon at the end,
+# and the indented blocks for those should be consistently indented (e.g., 4 spaces).
+#
+# Broken code:
+# x = 10
+# if x > 5
+# print("x is large")
+# for i in range(3)
+# print("i =", i)
+# def say_hello(name)
+# print(f"Hello, {name}!")
+#
+# Expected correct behavior:
+# The code should print "x is large" followed by "i = 0", "i = 1", "i = 2", and a greeting 
+# if say_hello is called.
+#
+# After fixing, you can test the code by calling say_hello with a name.
+
+# Exercise 2: Imports
+# -------------------
+# Python has a rich standard library. You can import modules to use additional functions and constants.
+# 
+# **Task 2.1:** Import the `math` module and use it to calculate the square root of 16 and the value of π.
+# Print the results in a formatted string.
+# 
+# **Task 2.2:** Import the `random` module (or just the `choice` function from it) and use it to pick a random element from a list.
+# 
+# Example:
+# - Use `math.sqrt(16)` to get the square root, and `math.pi` for π.
+# - Use `random.choice(sequence)` to pick a random element from a list.
+#
+# (By convention, imports are usually at the top of the file. In these exercises, you can import where needed for demonstration.)
+import math
+import random
+
+# TODO: Calculate the square root of 16 and print it along with π (pi) from math.
+root_16 = math.sqrt(16)
+pi_value = math.pi
+print(f"The square root of 16 is {root_16} and π is approximately {pi_value}")
+
+# TODO: Use random.choice to pick a random element from the list and print it.
+choices = ["apple", "banana", "cherry", "date"]
+pick = random.choice(choices)
+print(f"A random fruit: {pick}")
+
+# Exercise 3: Variable Lifecycle and Namespaces
+# --------------------------------------------
+# Variables in Python have a scope (namespace) that defines where they exist.
+# - A variable defined inside a function is local to that function.
+# - A variable defined at the top level of a module (or script) is global.
+# 
+# **Task 3.1:** Examine the following code. It tries to modify a global variable inside a function.
+# ```python
+# counter = 0
+# def increment():
+#     counter += 1  # Attempt to modify global counter
+# increment()
+# ```
+# Predict what happens when calling `increment()` and why.
+# 
+# **Task 3.2:** Fix the `increment` function so that it properly modifies the global variable `counter`. 
+# One way is to use the `global` keyword inside the function.
+# 
+# **Task 3.3:** (Bonus) Write a function that has a local variable and show that it cannot be accessed outside the function.
+#
+counter = 0
+
+def increment():
+    # Using the global keyword to modify the global variable inside the function
+    global counter
+    counter += 1
+
+increment()
+print(f"counter after increment() call: {counter}")  # should print 1
+
+def local_var_demo():
+    x = 5  # local variable
+    print(f"x inside function: {x}")
+
+local_var_demo()
+# The following line, if uncommented, would cause an error because x is not defined outside the function.
+# print(x)  # NameError: name 'x' is not defined
+
+# Exercise 4: Working with Primitive Data Types
+# ---------------------------------------------
+# Python's primitive (built-in) data types include integers, floats, booleans, and strings (and also NoneType).
+# You can perform various operations on these types.
+# 
+# **Task 4.1:** Perform basic arithmetic operations with integers and floats and print the results.
+# (e.g., addition, subtraction, multiplication, division).
+# 
+# **Task 4.2:** Demonstrate use of a boolean in a conditional. Define a boolean variable and use it in an `if` statement.
+# 
+# **Task 4.3:** Explore Python's dynamic typing by changing a variable's type (e.g., assign an int, then a string to the same variable).
+# Print the type of the variable after each assignment using the built-in `type()` function.
+# 
+# **Task 4.4:** Create a list of a few numbers and a dictionary mapping strings to numbers, then print them to confirm their values.
+#
+# (Note: Lists and dictionaries are not "primitive" in the strict sense, but they are fundamental built-in data structures in Python.)
+#
+# Arithmetic operations
+a = 15
+b = 4
+print("a + b =", a + b)        # addition
+print("a - b =", a - b)        # subtraction
+print("a * b =", a * b)        # multiplication
+print("a / b =", a / b)        # division (floating-point result)
+print("a // b =", a // b)      # floor division (integer result)
+print("a % b =", a % b)        # modulus (remainder)
+print("a ** b =", a ** b)      # exponentiation (a^b)
+
+# Boolean usage in a conditional
+is_raining = False
+if is_raining:
+    print("Take an umbrella.")
+else:
+    print("No rain today, enjoy the sunshine!")
+
+# Dynamic typing: a variable can hold any type
+var = 42
+print(f"var = {var}, type = {type(var)}")
+var = "Now I'm a string"
+print(f"var = '{var}', type = {type(var)}")
+
+# List and Dictionary examples
+numbers_list = [1, 2, 3, 4]
+person_dict = {"name": "Alice", "age": 30}
+print("numbers_list =", numbers_list)
+print("person_dict =", person_dict)
+
+# Exercise 5: Functions
+# ---------------------
+# Functions are defined using the `def` keyword. They can take parameters and return values.
+# 
+# **Task 5.1:** Write a function `square(n)` that returns the square of its argument `n`. (Use the `return` statement).
+# 
+# **Task 5.2:** Write a function `greet(name)` that prints a greeting message using the given name. (This function can print directly without returning a value).
+# 
+# After defining the functions, call them with example arguments to demonstrate they work.
+#
+def square(n):
+    """Return the square of n."""
+    return n * n  # multiply n by itself
+
+def greet(name):
+    """Print a greeting message to the given name."""
+    print(f"Hello, {name}! Welcome to Python exercises.")
+
+# Testing the functions:
+print("square(5) returns:", square(5))  # Expected output: 25
+greet("Alice")  # Expected output: Hello, Alice! Welcome to Python exercises.
+
+# Exercise 6: Function Parameters (Default, *args, **kwargs)
+# ----------------------------------------------------------
+# Python supports different kinds of function parameters:
+# - Default parameters: parameters with default values if not provided.
+# - *args: a way to pass a variable number of positional arguments to a function.
+# - **kwargs: a way to pass a variable number of keyword arguments (as a dict).
+# 
+# **Task 6.1:** Write a function `power(base, exp=2)` that returns base raised to exp. If `exp` is not provided, it defaults to 2 (squaring the base).
+# 
+# **Task 6.2:** Write a function `multiply_all(*numbers)` that takes any number of numeric arguments and returns their product. If no arguments are given, return 1.
+# 
+# **Task 6.3:** Write a function `describe_person(**kwargs)` that can take an arbitrary set of keyword arguments. It should return a string describing the person. For example, `describe_person(name="Bob", age=25)` might return "name = Bob, age = 25". Iterate over `kwargs` items to build the description.
+# 
+# HINT: Inside `describe_person`, kwargs will be a dictionary of the passed keyword arguments.
+#
+def power(base, exp=2):
+    """Return base raised to the power of exp (default exp is 2)."""
+    return base ** exp
+
+def multiply_all(*numbers):
+    """Return the product of all given numbers. Returns 1 if no numbers are given."""
+    product = 1
+    for num in numbers:
+        product *= num
+    return product
+
+def describe_person(**kwargs):
+    """Return a string describing the person from passed-in keyword attributes."""
+    description_parts = []
+    for key, value in kwargs.items():
+        description_parts.append(f"{key} = {value}")
+    return ", ".join(description_parts)
+
+# Testing the functions:
+print("power(3) =", power(3))            # 3^2 = 9 (default exponent)
+print("power(2, 3) =", power(2, 3))      # 2^3 = 8
+print("multiply_all(2,3,4) =", multiply_all(2, 3, 4))  # 24
+print("multiply_all() with no args =", multiply_all())  # 1
+print(describe_person(name="Bob", age=25))  # "name = Bob, age = 25"
+print(describe_person(first_name="Alice", last_name="Smith", profession="Engineer"))
+
+# Exercise 7: Type Hints
+# ----------------------
+# Type hints (type annotations) allow you to indicate the expected types of variables and function parameters/return.
+# They are optional and used by linters or IDEs for checking, but they don't enforce types at runtime.
+# 
+# **Task 7:** Add type hints to the following function definition and variables.
+# ```python
+# def add(a, b):
+#     return a + b
+# ```
+# Assume `a` and `b` should be integers and the function returns an integer.
+# Also, create a variable with type hint for a list of strings.
+#
+def add(a: int, b: int) -> int:
+    """Return the sum of a and b (both ints)."""
+    return a + b
+
+# Using type hints for variables (Python 3.6+ syntax):
+names: list[str] = ["Alice", "Bob", "Charlie"]
+count: int = 3
+
+# Testing the add function:
+print("add(5, 7) =", add(5, 7))  # Expected 12
+
+# (Note: Type hints do not change how the code runs. They are for developer clarity and static analysis tools like mypy.)
+
+# Exercise 8: Casting
+# -------------------
+# Casting means converting a value from one type to another. In Python, you can cast using type functions like int(), float(), str(), etc.
+# 
+# **Task 8.1:** Convert the string "123" into an integer and add 1 to it. Print the result.
+# 
+# **Task 8.2:** Convert the number 3.14159 into an integer (this will truncate the decimal part) and print it.
+# 
+# **Task 8.3:** Convert an integer to a string and concatenate it with another string.
+# 
+# **Task 8.4:** Use `bool()` on various values (like 0, 1, "", "hello") to see their boolean equivalent.
+#
+# Casting examples
+num_str = "123"
+num_int = int(num_str)  # convert string to int
+print(f"{num_str} as an integer plus 1 is {num_int + 1}")  # should print 124
+
+pi_str = "3.14159"
+pi_float = float(pi_str)  # convert string to float
+pi_int = int(pi_float)    # convert float to int (truncates)
+print(f"{pi_float} cast to int is {pi_int}")  # should print 3
+
+age = 30
+age_str = str(age)  # convert int to string
+message = "I am " + age_str + " years old."
+print(message)
+
+# Boolean casting and truthy/falsey values
+print("bool(0) ->", bool(0))         # False, 0 is falsey
+print("bool(1) ->", bool(1))         # True
+print("bool(\"\") ->", bool(""))     # False, empty string is falsey
+print("bool(\"hello\") ->", bool("hello"))  # True, non-empty string is truthy
+
+# Exercise 9: Object-Oriented Programming (OOP) Basics with HTTP Request
+# ---------------------------------------------------------------------
+# Classes allow you to bundle data and functions (methods) together. 
+# We will create a simple HTTP client class as an example.
+# 
+# **Task 9.1:** Create a class `HttpClient` that:
+# - Has a class attribute `default_headers` (a dictionary) with a default User-Agent or any header of your choice.
+# - The constructor (`__init__`) can take an optional `base_url` (string) attribute which is stored as an instance attribute. If provided, this base_url will prefix URLs for requests.
+# - Has a method `fetch(path)` that:
+#    - Constructs the full URL by combining base_url and path if base_url is set, otherwise uses `path` as the full URL.
+#    - Uses the `requests` library to perform an HTTP GET request to the URL with the default_headers.
+#    - Returns the response object from `requests.get`.
+# 
+# *(You might need to install the 'requests' library with `pip install requests` to run this exercise.)*
+# 
+# **Task 9.2:** Create an instance of `HttpClient` (with or without a base_url) and use it to fetch a webpage (for example, "https://httpbin.org/get"). Print the status code of the response to confirm it worked.
+#
+# HINT: `requests.get(url, headers=...)` will perform a GET request. Use `HttpClient.default_headers` for headers.
+#
+import requests
+
+class HttpClient:
+    # Class attribute for default headers
+    default_headers = {"User-Agent": "HttpClient/1.0"}
+
+    def __init__(self, base_url=None):
+        """Initialize with an optional base_url."""
+        self.base_url = base_url
+
+    def fetch(self, path):
+        """Fetch the content from the given path (URL or endpoint). Returns the Response object."""
+        # Determine the full URL
+        if self.base_url:
+            # If path already starts with http, don't double up base_url
+            if path.startswith("http"):
+                url = path
+            else:
+                url = self.base_url.rstrip("/") + "/" + path.lstrip("/")
+        else:
+            url = path
+        response = requests.get(url, headers=HttpClient.default_headers)
+        return response
+
+# Example usage of HttpClient:
+client = HttpClient()  # no base_url
+response = client.fetch("https://httpbin.org/get")
+print(f"GET request to httpbin.org status: {response.status_code}")
+
+# Exercise 10: Method Chaining
+# ----------------------------
+# Method chaining is a technique where object methods return self (the object itself), allowing multiple method calls in one line.
+# 
+# **Task 10:** Create a class `Calculator` that:
+# - Has an internal value (initialized to 0 in `__init__`).
+# - Has methods `add(self, x)` and `subtract(self, x)` that add or subtract a number from the internal value.
+# - Each method returns `self` to allow chaining.
+# - Also include a method `result(self)` that returns the current value.
+# 
+# Example usage: `calc = Calculator(); calc.add(5).subtract(3).add(10).result()` should result in 12.
+# Implement the class accordingly and test the chaining example.
+#
+class Calculator:
+    def __init__(self):
+        self.value = 0
+
+    def add(self, x):
+        """Add x to the internal value."""
+        self.value += x
+        return self  # return self to allow chaining
+
+    def subtract(self, x):
+        """Subtract x from the internal value."""
+        self.value -= x
+        return self  # return self to allow chaining
+
+    def result(self):
+        """Return the current value."""
+        return self.value
+
+# Testing method chaining:
+calc = Calculator()
+final_value = calc.add(5).subtract(3).add(10).result()
+print("Result of chaining Calculator operations:", final_value)  # Expected 12
+
+# Exercise 11: Basic Math and Order of Operations
+# ----------------------------------------------
+# Python follows standard mathematical order of operations (PEMDAS: Parentheses, Exponents, Multiplication/Division, Addition/Subtraction).
+# 
+# **Task 11.1:** Without running the code, determine the result of the following expression, then verify by printing it:
+# `result = 3 + 4 * 2` 
+# (Is it 14 or 11? Remember multiplication has higher precedence than addition.)
+# 
+# **Task 11.2:** Add parentheses to the above expression to change the order of evaluation so that addition happens first, then multiplication. Calculate `(3 + 4) * 2`.
+# 
+# **Task 11.3:** Write a couple more examples of expressions and confirm Python's order of operations (for example, include division, modulus, and exponentiation).
+#
+result1 = 3 + 4 * 2
+result2 = (3 + 4) * 2
+print("3 + 4 * 2 =", result1)          # Expected 11 (4*2 = 8, then 3+8)
+print("(3 + 4) * 2 =", result2)        # Expected 14 (3+4 = 7, then 7*2)
+# Additional examples:
+print("10 - 3 + 2 =", 10 - 3 + 2)      # Expected 9 (left-to-right for equal precedence: (10-3)=7, 7+2=9)
+print("10 - (3 + 2) =", 10 - (3 + 2))  # Expected 5 (parentheses first: 3+2=5, then 10-5)
+print("2 ** 3 * 2 =", 2 ** 3 * 2)      # Expected 16 (exponent first: 2**3=8, then 8*2)
+print("2 ** (3 * 2) =", 2 ** (3 * 2))  # Expected 64 (parentheses first: 3*2=6, then 2**6)
+
+# Exercise 12: Working with Strings and f-Strings
+# ----------------------------------------------
+# Strings are sequences of characters. Python offers many ways to manipulate strings.
+# 
+# **Task 12.1:** Concatenate (join) two strings and print the result.
+# 
+# **Task 12.2:** Given a name and an age, use an f-string to create a sentence like: "Hello, my name is NAME and I am AGE years old."
+# 
+# **Task 12.3:** Show an example of using special characters in strings, such as newline (`\n`) or tab (`\t`).
+# 
+# Note: f-strings (formatted string literals) are prefixed with 'f' and allow embedding expressions inside braces.
+#
+# String concatenation
+first = "Hello"
+second = "World"
+combined = first + " " + second + "!"
+print("Combined string:", combined)
+
+# f-string formatting
+name = "Diana"
+age = 28
+intro = f"Hello, my name is {name} and I am {age} years old."
+print(intro)
+
+# Special characters in strings
+print("Line1\nLine2\nLine3")  # \n creates a new line
+print("Column1\tColumn2\tColumn3")  # \t inserts a tab space
+
+# Exercise 13: Syntactic Tricks for Long Strings
+# ---------------------------------------------
+# Long strings can be split across multiple lines for better code readability.
+# 
+# **Task 13.1:** Use a triple-quoted string to create a multi-line message or paragraph. Print it and observe that the line breaks are preserved.
+# 
+# **Task 13.2:** Create a very long string (a single sentence) but split it into multiple lines in the code for readability without adding actual newline characters to the string. (Hint: You can do this by using parentheses or by concatenating string literals).
+# Print the long string to verify it is assembled into one line.
+#
+# Triple-quoted multi-line string (preserves line breaks and indentation exactly as written)
+multi_line_message = """This is a multi-line string.
+It can span multiple lines.
+Line breaks and spacing are preserved as is."""
+print(multi_line_message)
+
+# Splitting a long string across lines without newline characters using parentheses
+long_message = ("This is a very long message that we want to split across multiple lines "
+               "for readability, but when printed it should appear as one continuous line.")
+print(long_message)
+
+# Exercise 14: Creating Classes (Static and Instance Members)
+# ----------------------------------------------------------
+# In Python classes:
+# - Instance members (attributes) belong to each object (defined usually in __init__ via self).
+# - Static members can mean class attributes (shared by all instances) or static methods (functions not needing an instance).
+# 
+# **Task 14.1:** Define a class `MyCounter` that has:
+#   - A class attribute `count` initialized to 0.
+#   - An instance method `increment()` that increases the class attribute `count` by 1 (every time any instance calls it, the same count is incremented).
+#   - An instance attribute `name` set via constructor (each instance has its own name).
+# 
+# **Task 14.2:** Create two instances of `MyCounter` with different names. Call `increment()` on both instances a few times and print `MyCounter.count` to see that the count is shared (static behavior).
+# 
+# **Task 14.3:** Add a `@staticmethod` to `MyCounter` named `info()` that returns a string like "This is a counter class". Call this static method without an instance (using the class name).
+#
+class MyCounter:
+    # Class attribute (static member)
+    count = 0
+
+    def __init__(self, name):
+        self.name = name  # instance attribute
+
+    def increment(self):
+        """Increment the global count by 1."""
+        MyCounter.count += 1
+
+    @staticmethod
+    def info():
+        return "This is a counter class"
+
+# Creating instances
+counter_a = MyCounter("CounterA")
+counter_b = MyCounter("CounterB")
+
+# Using increment on both instances
+counter_a.increment()
+counter_a.increment()
+counter_b.increment()
+print("MyCounter.count after increments:", MyCounter.count)  # Expected 3
+
+# Each instance has its own name attribute
+print(f"counter_a.name = {counter_a.name}, counter_b.name = {counter_b.name}")
+
+# Calling static method
+print("Static method call:", MyCounter.info())
+
+# Exercise 15: Inheritance of Classes
+# -----------------------------------
+# Inheritance allows one class to derive from another, inheriting its attributes and methods.
+# 
+# **Task 15:** Define a base class `Animal` with:
+#   - an `__init__` that takes a `name` and stores it,
+#   - a method `speak()` that returns a generic sound (like "..." or "Unknown sound").
+# Then define a subclass `Dog` that:
+#   - inherits from `Animal`,
+#   - overrides `speak()` to return a dog sound (e.g., "Woof! My name is <name>.")
+#   - (optional) has its own method or attribute if you like.
+# 
+# Create an instance of `Dog` and call its `speak()` method to verify the output.
+#
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        return "..."  # generic sound
+
+class Dog(Animal):
+    def __init__(self, name):
+        # Call the base class constructor to set the name
+        super().__init__(name)
+
+    def speak(self):
+        return f"Woof! My name is {self.name}."
+
+# Testing inheritance:
+generic_animal = Animal("Generic")
+dog = Dog("Buddy")
+print("Animal speaks:", generic_animal.speak())  # "..."
+print("Dog speaks:", dog.speak())               # "Woof! My name is Buddy."
+
+# Exercise 16: Closures Behavior
+# ------------------------------
+# A closure occurs when an inner function (nested function) captures variables from its enclosing scope.
+# The inner function retains access to those variables even after the outer function has finished executing.
+# 
+# **Task 16:** Write a function `make_multiplier(x)` that returns a new function. The returned function should take an argument `y` and return the product of `x * y`.
+# Here, `x` is captured from the outer scope by the inner function (closure).
+# 
+# Test the closure by creating a couple of multipliers (e.g., a doubler and a tripler) and calling them.
+#
+def make_multiplier(x):
+    """Return a function that multiplies its input by x."""
+    def multiplier(y):
+        return x * y  # x is captured from the outer function's scope
+    return multiplier
+
+# Creating closure functions
+doubler = make_multiplier(2)
+tripler = make_multiplier(3)
+print("doubler(5) =", doubler(5))  # Expected 10 (2*5)
+print("tripler(5) =", tripler(5))  # Expected 15 (3*5)
+
+# Exercise 17: Create Your Own Decorator
+# --------------------------------------
+# Decorators are functions that take another function and extend its behavior without explicitly modifying it. 
+# They are often used with the `@decorator_name` syntax above function definitions.
+# 
+# **Task 17:** Create a decorator `debug` that prints a message before and after a function call, including the function's name.
+# Steps:
+#   1. Define a function `debug(func)` that returns an inner wrapper function.
+#   2. The wrapper should print "Calling <func_name>..." before calling `func`, call `func`, then print "... <func_name> done." after.
+#   3. Use `functools.wraps` on the wrapper to preserve the original function's metadata (optional but good practice).
+# 
+# Use the decorator on a test function (e.g., a simple add or greet function) to demonstrate it.
+#
+import functools
+
+def debug(func):
+    """Decorator to print debug info before and after a function call."""
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        print(f"Calling {func.__name__}...")
+        result = func(*args, **kwargs)
+        print(f"...{func.__name__} done.")
+        return result
+    return wrapper
+
+@debug
+def add_two(a, b):
+    """Return the sum of a and b."""
+    return a + b
+
+# Using the decorated function
+print("Result of add_two(3,4):", add_two(3, 4))
+
+# Exercise 18: Functions as First-Class Objects
+# --------------------------------------------
+# In Python, functions are first-class citizens, meaning they can be passed around and used as variables.
+# 
+# **Task 18:** Write a function `apply_twice(func, value)` that takes a function and a value, and returns the result of applying the function to the value twice (i.e., func(func(value))).
+# Then test this by passing in a simple function (or lambda) and a value.
+# 
+# This demonstrates that we can pass a function as an argument to another function.
+#
+def apply_twice(func, value):
+    """Apply func to value twice and return the result."""
+    return func(func(value))
+
+def double(x):
+    return x * 2
+
+# Testing apply_twice with a named function
+print("apply_twice(double, 3) =", apply_twice(double, 3))  # double(double(3)) = double(6) = 12
+
+# We can also pass a lambda (anonymous function) to apply_twice:
+print("apply_twice(lambda x: x + 1, 5) =", apply_twice(lambda x: x + 1, 5))  # (5+1)+1 = 7
+
+# Exercise 19: Anonymous Functions (Lambdas)
+# -----------------------------------------
+# Anonymous functions in Python are created with the `lambda` keyword. They are often used for short, throwaway functions.
+# 
+# **Task 19:** Create a lambda function that takes a number and returns its square. Assign it to a variable and use it to square a few numbers.
+# Also, demonstrate a lambda that takes two arguments (e.g., add two numbers).
+# 
+# Note: Lambdas are limited to a single expression.
+#
+square_func = lambda x: x * x
+print("square_func(7) =", square_func(7))  # 49
+
+add_func = lambda a, b: a + b
+print("add_func(3, 4) =", add_func(3, 4))   # 7
+
+# Lambdas can also be immediately invoked:
+print("Square of 5 (immediate lambda call) =", (lambda x: x**2)(5))
+
+# Exercise 20: Using Anonymous Functions in Functional Programming
+# ---------------------------------------------------------------
+# Python's functional programming features include built-in functions like map(), filter(), and sorted(), which often accept lambdas for custom behavior.
+# 
+# **Task 20.1:** Use `map` with a lambda to square all numbers in a list.
+# **Task 20.2:** Use `filter` with a lambda to filter out only even numbers from a list of integers.
+# **Task 20.3:** Use the `sorted` function with a lambda as a key to sort a list of tuples by the second element.
+#
+numbers = [1, 2, 3, 4, 5, 6, 7, 8]
+# Using map to square each number
+squares = list(map(lambda x: x*x, numbers))
+print("Squares of numbers:", squares)
+
+# Using filter to get even numbers
+evens = list(filter(lambda x: x % 2 == 0, numbers))
+print("Even numbers:", evens)
+
+# Sorting a list of tuples by second element using sorted + lambda key
+pairs = [("a", 3), ("b", 1), ("c", 2)]
+sorted_by_second = sorted(pairs, key=lambda pair: pair[1])
+print("Sorted by second element:", sorted_by_second)
+
+# Exercise 21: Index and Range Notations
+# --------------------------------------
+# Python provides powerful slicing notation for sequences and the `range()` function for generating sequences of numbers.
+# 
+# **Task 21.1:** Given a list `nums = list(range(10))` (which gives 0 through 9), use slicing to:
+#   - Get the first 5 elements,
+#   - Get the last 3 elements,
+#   - Get every second element (step slicing).
+# Print the results of each.
+# 
+# **Task 21.2:** Use negative indices to get the last element of the list.
+# 
+# **Task 21.3:** Demonstrate the `range()` function by creating a range of numbers from 5 to 8 (inclusive of 5, exclusive of 9) and convert it to a list to display.
+#
+nums = list(range(10))  # This creates a list [0,1,2,3,4,5,6,7,8,9]
+print("nums =", nums)
+print("First 5 elements:", nums[:5])    # 0 to 4
+print("Last 3 elements:", nums[-3:])    # last 3 elements
+print("Every 2nd element:", nums[::2])  # step of 2 -> [0,2,4,6,8]
+print("Last element (negative index):", nums[-1])  # -1 index gives the last element
+
+r = range(5, 9)  # numbers 5,6,7,8
+print("Range 5 to 8 (list):", list(r))
+
+# Exercise 22: Basic TDD with pytest (Testing HttpClient)
+# ------------------------------------------------------
+# Test-Driven Development (TDD) means writing tests for your code. We will write tests for the HttpClient class (from Exercise 9).
+# We will use `pytest` framework for writing tests. 
+# Each test is simply a function whose name starts with `test_`, and uses `assert` to check conditions.
+# 
+# **Task 22.1:** Write a test function `test_fetch_real()` that:
+#   - Creates an `HttpClient` instance.
+#   - Uses it to fetch "https://httpbin.org/get".
+#   - Asserts that the response status code is 200.
+#   - (This will perform a real HTTP request. Ensure you have internet access when running it, and have `requests` installed. If running offline, you might skip this test.)
+# 
+# **Task 22.2:** Write a test function `test_fetch_dummy(monkeypatch)` that:
+#   - Uses `monkeypatch` (a pytest fixture) to replace `requests.get` with a dummy function that returns a custom response object (to simulate a successful response without making a real HTTP call).
+#   - Calls `HttpClient().fetch(...)` with any URL.
+#   - Asserts that the returned object's `status_code` is what you set (e.g., 200), and perhaps test some dummy content.
+# 
+# Note: The `monkeypatch` fixture is provided by pytest. You can also use `unittest.mock.patch`, but monkeypatch is convenient in pytest.
+# 
+# *(Make sure pytest is installed: `pip install pytest`.)*
+#
+# To run tests, you would run `pytest` in the terminal. The following test functions won't produce output unless run via pytest.
+#
+def test_fetch_real():
+    client = HttpClient()
+    resp = client.fetch("https://httpbin.org/get")
+    # We expect a successful response (status_code 200)
+    assert resp.status_code == 200
+    # We can also assert that the response has a JSON body containing certain keys:
+    data = resp.json()
+    assert "url" in data and "headers" in data
+
+def test_fetch_dummy(monkeypatch):
+    # Create a dummy response class to mimic 'requests.Response'
+    class DummyResponse:
+        def __init__(self, status_code=200, text=""):
+            self.status_code = status_code
+            self.text = text
+        def json(self):
+            return {"dummy": "data"}
+
+    # Dummy replacement for requests.get
+    def dummy_get(url, headers=None):
+        # We can assert that our dummy get is called with correct parameters if needed
+        return DummyResponse(status_code=200, text="OK")
+
+    # Use monkeypatch to replace requests.get with our dummy_get function
+    monkeypatch.setattr(requests, "get", dummy_get)
+
+    client = HttpClient()
+    resp = client.fetch("http://example.com")  # URL doesn't matter, it's not actually fetched
+    # Now assert that our dummy response is returned as expected
+    assert resp.status_code == 200
+    assert resp.text == "OK"
+    # Also test the dummy JSON content
+    assert resp.json()["dummy"] == "data"
+
+# (In practice, you would save the tests in a separate file, and run `pytest`. The tests above demonstrate how to write tests for the class.)
+# =====================================================================================================
+# Solutions
+# =========
+# Below are the solutions for each exercise. If you got the output as expected in the tasks above, 
+# you have effectively solved them. The code above already reflects the solutions integrated inline.
+#
+# Exercise 1 Solution:
+# Fixed code with proper syntax:
+x = 10
+if x > 5:
+    print("x is large")
+for i in range(3):
+    print("i =", i)
+def say_hello(name):
+    print(f"Hello, {name}!")
+# (This would print "x is large", then "i = 0", "i = 1", "i = 2". The function say_hello can be called to print a greeting.)
+
+# Exercise 2 Solution:
+# (See code above where we imported math and random, then used math.sqrt, math.pi, and random.choice.)
+
+# Exercise 3 Solution:
+# - Calling increment() without the global keyword would raise UnboundLocalError because Python thinks counter inside the function is a new local variable (due to the assignment), conflicting with the global name.
+# - We fixed it by adding `global counter` inside increment(), so it modifies the global variable.
+# - local_var_demo shows that a variable defined inside a function (x) is not accessible outside (NameError if we try).
+
+# Exercise 4 Solution:
+# We demonstrated:
+# - Arithmetic operations on int and float.
+# - Boolean in if/else.
+# - Dynamic typing by reusing a variable for different types.
+# - Defined a list and dict and printed them.
+
+# Exercise 5 Solution:
+# We wrote the square(n) and greet(name) functions and demonstrated them. (square returns n*n, greet prints a message.)
+
+# Exercise 6 Solution:
+# - power(base, exp=2) returns base ** exp.
+# - multiply_all(*numbers) multiplies any number of args (or returns 1 if none).
+# - describe_person(**kwargs) builds a string from all keyword args.
+# Printed examples show they work.
+
+# Exercise 7 Solution:
+# We added type hints to add(a: int, b: int) -> int, and gave examples of variable annotations.
+# The function still adds and returns an int.
+
+# Exercise 8 Solution:
+# We cast "123" to int (123) and added 1 -> 124.
+# Cast 3.14159 to float (3.14159) then to int -> 3.
+# Converted int 30 to "30" and concatenated into a string.
+# Shown bool casting results for 0,1,"", "hello".
+
+# Exercise 9 Solution:
+# The HttpClient class has:
+# - class attribute default_headers
+# - __init__ with optional base_url
+# - fetch method that makes a GET request (using requests) and returns the Response.
+# Example usage fetches httpbin and prints status code 200.
+# (Make sure to install `requests` to use this class.)
+
+# Exercise 10 Solution:
+# The Calculator class returns self in add() and subtract() to allow chaining.
+# We tested calc.add(5).subtract(3).add(10).result() which yields 12.
+
+# Exercise 11 Solution:
+# We showed that 3 + 4 * 2 = 11 (multiplication first), and (3+4)*2 = 14 (parentheses override).
+# Additional examples confirm left-to-right evaluation for same precedence and that exponentiation binds before multiplication unless parenthesized.
+
+# Exercise 12 Solution:
+# We concatenated strings and used an f-string to format a message.
+# Also demonstrated newline and tab characters in strings.
+
+# Exercise 13 Solution:
+# We used a triple-quoted string for multi-line text (preserving line breaks).
+# We showed how to split a long string into multiple parts in code using parentheses, which prints as one continuous line (no actual newline embedded).
+
+# Exercise 14 Solution:
+# MyCounter class:
+# - class attribute count (shared across instances).
+# - increment() method increments the class count.
+# - static method info() returns a message.
+# Two instances increment the count, showing the static nature of the class variable.
+# Static method called via class without instance.
+
+# Exercise 15 Solution:
+# Animal base class with speak(), Dog subclass overrides speak().
+# Dog uses super() to call Animal.__init__. The dog's speak returns a custom message including its name.
+# Tested that Animal.speak returns "..." and Dog.speak returns "Woof!..."
+
+# Exercise 16 Solution:
+# make_multiplier(x) returns a closure that multiplies by x.
+# We created doubler and tripler and tested that they work (2*5, 3*5).
+# This shows the closure capturing 'x'.
+
+# Exercise 17 Solution:
+# The debug decorator prints messages before and after the wrapped function call.
+# We used functools.wraps to preserve metadata.
+# The add_two function was decorated with @debug and calling it prints the debug messages and returns the sum.
+# (Output shows "Calling add_two...", then result, then "...add_two done.")
+
+# Exercise 18 Solution:
+# apply_twice applies a function to a value two times.
+# We tested with a double function and a lambda (x+1), confirming the results (double-double 3 -> 12, adding 1 twice to 5 -> 7).
+
+# Exercise 19 Solution:
+# We created lambda functions for square and add and demonstrated their use, including an immediately invoked lambda for square of 5.
+
+# Exercise 20 Solution:
+# We used map(lambda) to square a list of numbers, filter(lambda) to extract evens, and sorted(key=lambda) to sort by second element of tuples.
+# Printed results demonstrate correct functionality.
+
+# Exercise 21 Solution:
+# We demonstrated list slicing:
+# - nums[:5] gives first 5,
+# - nums[-3:] gives last 3,
+# - nums[::2] gives every second.
+# We showed negative index -1 gives last element.
+# Also created a range(5,9) and listed it to show it produces [5,6,7,8].
+
+# Exercise 22 Solution:
+# We wrote two pytest test functions for HttpClient:
+# - test_fetch_real actually calls httpbin and checks status 200 and presence of keys in JSON.
+# - test_fetch_dummy monkeypatches requests.get with a dummy function to simulate a response and checks that HttpClient.fetch returns the dummy response.
+# These tests illustrate how to test code with real and mocked external calls.
