@@ -3,7 +3,7 @@ import pandas as pd
 # =============================================================================
 # 1. Load the dataset from the provided pipe-delimited CSV file
 # =============================================================================
-data_url = '/workspaces/accpython202507/exampledata/orderdetails.csv'
+data_url = '/workspaces/accpython202510/datafiles/orderdetails.csv'
 df = pd.read_csv(data_url, delimiter='|')
 
 
