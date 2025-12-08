@@ -33,6 +33,14 @@
 #
 # After fixing, you can test the code by calling say_hello with a name.
 
+x = 10
+if x > 5:
+    print("x is large")
+for i in range(3):
+    print("i =", i)
+def say_hello(name):
+    print(f"Hello, {name}!")
+
 # Exercise 2: Imports
 # -------------------
 # Python has a rich standard library. You can import modules to use additional functions and constants.
@@ -47,15 +55,14 @@
 # - Use `random.choice(sequence)` to pick a random element from a list.
 #
 # (By convention, imports are usually at the top of the file. In these exercises, you can import where needed for demonstration.)
+
 import math
 import random
 
-# TODO: Calculate the square root of 16 and print it along with π (pi) from math.
 root_16 = math.sqrt(16)
 pi_value = math.pi
 print(f"The square root of 16 is {root_16} and π is approximately {pi_value}")
 
-# TODO: Use random.choice to pick a random element from the list and print it.
 choices = ["apple", "banana", "cherry", "date"]
 pick = random.choice(choices)
 print(f"A random fruit: {pick}")
@@ -80,23 +87,22 @@ print(f"A random fruit: {pick}")
 # 
 # **Task 3.3:** (Bonus) Write a function that has a local variable and show that it cannot be accessed outside the function.
 #
+
 counter = 0
 
 def increment():
-    # Using the global keyword to modify the global variable inside the function
     global counter
     counter += 1
 
 increment()
-print(f"counter after increment() call: {counter}")  # should print 1
+print(f"counter after increment() call: {counter}")  # should print 1 on first run, since the variable starts at 0 outside of the function, but then is incremented by invoking it in a global sense, if the function is called again it would be 2, etc, without this it would read 1 forever because globally it will remain 0 and only within the context of the function is it being incremented beyond that, thus 'resetting' to zero each time within the context of the function as the global value would be unchanged
 
 def local_var_demo():
     x = 5  # local variable
     print(f"x inside function: {x}")
 
 local_var_demo()
-# The following line, if uncommented, would cause an error because x is not defined outside the function.
-# print(x)  # NameError: name 'x' is not defined
+# x only existis within the context of the function and cannot be accessed outside of it
 
 # Exercise 4: Working with Primitive Data Types
 # ---------------------------------------------
@@ -116,30 +122,28 @@ local_var_demo()
 # (Note: Lists and dictionaries are not "primitive" in the strict sense, but they are fundamental built-in data structures in Python.)
 #
 # Arithmetic operations
-a = 15
-b = 4
+
+a = 47
+b = 62
 print("a + b =", a + b)        # addition
 print("a - b =", a - b)        # subtraction
 print("a * b =", a * b)        # multiplication
-print("a / b =", a / b)        # division (floating-point result)
-print("a // b =", a // b)      # floor division (integer result)
-print("a % b =", a % b)        # modulus (remainder)
-print("a ** b =", a ** b)      # exponentiation (a^b)
+print("a / b =", a / b)        # division
+print("a // b =", a // b)      # integer division
+print("a % b =", a % b)        # modular division
+print("a ** b =", a ** b)      # exponentiation
 
-# Boolean usage in a conditional
 is_raining = False
 if is_raining:
     print("Take an umbrella.")
 else:
     print("No rain today, enjoy the sunshine!")
 
-# Dynamic typing: a variable can hold any type
-var = 42
+var = True
 print(f"var = {var}, type = {type(var)}")
 var = "Now I'm a string"
 print(f"var = '{var}', type = {type(var)}")
 
-# List and Dictionary examples
 numbers_list = [1, 2, 3, 4]
 person_dict = {"name": "Alice", "age": 30}
 print("numbers_list =", numbers_list)
