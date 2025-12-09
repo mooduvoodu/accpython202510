@@ -50,7 +50,7 @@ print("DataFrame built from Series:\n", fruit_df, "\n")
 # ---------------------------------------------------------------------
 
 # NOTE: Update the path if the file lives elsewhere.
-df = pd.read_csv("/workspaces/accpython202507/exampledata/customers.csv", sep="|", na_values=["NULL"], encoding='ISO-8859-1')
+df = pd.read_csv("/workspaces/accpython202510/datafiles/customers.csv", sep="|", na_values=["NULL"], encoding='ISO-8859-1')
 print("First 5 rows of customers dataset:\n", df.head(), "\n")
 print("Columns:\n", df.columns.tolist(), "\n")
 
@@ -72,7 +72,7 @@ print("Selected rows/columns (1,5,10):\n", rows_1_5_10, "\n")
 
 # Label-based slice (inclusive of end label)
 slice_1_to_3 = df.loc[1:3, ["FirstName", "LastName"]]
-print("Slice CustomerID 1–3:\n", slice_1_to_3, "\n")
+print("Slice CustomerID 1 to 3:\n", slice_1_to_3, "\n")
 
 # Conditional selection (all customers whose Title == "Ms.")
 female_customers = df.loc[df["Title"] == "Ms.", ["FirstName", "LastName", "Title"]]

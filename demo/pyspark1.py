@@ -8,7 +8,7 @@ from pyspark.sql import SparkSession
 spark = SparkSession.builder.master("local[*]").appName("PySparkDemo").getOrCreate()
 
 # 2. Read the CSV file into a DataFrame with header and schema inference
-csv_file = "/workspaces/ADPPython/datafiles/orderdetails.csv"  # Path in GitHub Codespace environment
+csv_file = "/workspaces/accpython202510/datafiles/orderdetails.csv"  # Path in GitHub Codespace environment
 df = spark.read.option("header", True) \
                .option("inferSchema", True) \
                .option("sep", "|") \
